@@ -1,0 +1,7 @@
+{
+  "alert_sound": {
+    "sounds": [{
+      "name":"creeperalert:alert_sound"
+    }]
+  }
+}
