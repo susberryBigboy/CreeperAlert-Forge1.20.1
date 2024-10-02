@@ -1,19 +1,22 @@
 package com.papack.creeperalert;
 
 import com.mojang.logging.LogUtils;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
 import org.slf4j.Logger;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-// The value here should match an entry in the META-INF/mods.toml file
+@OnlyIn(Dist.CLIENT)
 @Mod(CreeperAlert.MODID)
 public class CreeperAlert {
-    public static final String MODID = "assets/creeperalert";
+    public static final String MODID = "creeperalert";
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public static final Path CR_CONF_DIR = Paths.get(FMLPaths.GAMEDIR.get() + "/config/CreeperAlert");
@@ -27,7 +30,9 @@ public class CreeperAlert {
     public static int INTERVAL_CORRECTION = 0;
 
 
-    public CreeperAlert(IEventBus eventBus) {
+    public CreeperAlert() {
+
+        IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         // sound
         AlertSound.SOUND_EVENTS.register(eventBus);
