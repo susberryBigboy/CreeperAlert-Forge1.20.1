@@ -35,7 +35,7 @@ public class CreeperAlert {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         // sound
-        AlertSound.register(eventBus);
+        AlertSound.SOUND_EVENTS.register(eventBus);
 
         // config
         eventBus.addListener(this::onClientSetup);
