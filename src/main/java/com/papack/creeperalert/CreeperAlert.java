@@ -1,8 +1,6 @@
 package com.papack.creeperalert;
 
 import com.mojang.logging.LogUtils;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -13,7 +11,6 @@ import org.slf4j.Logger;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-@OnlyIn(Dist.CLIENT)
 @Mod(CreeperAlert.MODID)
 public class CreeperAlert {
     public static final String MODID = "creeperalert";
