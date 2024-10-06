@@ -64,7 +64,7 @@ public class SearchCreeper {
 
             clientPlayer.clientLevel.playLocalSound(
                     clientPlayer.getX(), clientPlayer.getY(), clientPlayer.getZ(),
-                    AlertSound.CREEPER_ALERT_SOUND.get(),
+                    AlertSound.CREEPER_ALERT_SOUND.getHolder().orElseThrow().get(),
                     SoundSource.PLAYERS,
                     (VOLUME * 0.1f),
                     1.0f,
