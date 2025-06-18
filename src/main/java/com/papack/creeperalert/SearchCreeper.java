@@ -12,6 +12,7 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 
 import static com.papack.creeperalert.CreeperAlert.*;
 
@@ -59,16 +60,19 @@ public class SearchCreeper {
     }
 
     public static void playAlarmSound(LocalPlayer clientPlayer) {
-
-        if (clientPlayer != null) {
-
-            clientPlayer.clientLevel.playLocalSound(
-                    clientPlayer.getX(), clientPlayer.getY(), clientPlayer.getZ(),
-                    AlertSound.CREEPER_ALERT_SOUND.getHolder().orElseThrow().get(),
-                    SoundSource.PLAYERS,
-                    (VOLUME * 0.1f),
-                    1.0f,
-                    false);
+        if (FMLEnvironment.dist == Dist.CLIENT) {
+            if (AlertSound.CACHED_SOUND_EVENT != null && clientPlayer != null) {
+                clientPlayer.clientLevel.playLocalSound(
+                        clientPlayer.getX(), clientPlayer.getY(), clientPlayer.getZ(),
+                        AlertSound.CACHED_SOUND_EVENT,
+                        SoundSource.PLAYERS,
+                        (VOLUME * 0.1f),
+                        1.0f,
+                        false
+                );
+            } else {
+                CreeperAlert.LOGGER.warn("Sound not cached yet or clientPlayer is null");
+            }
         }
     }
 

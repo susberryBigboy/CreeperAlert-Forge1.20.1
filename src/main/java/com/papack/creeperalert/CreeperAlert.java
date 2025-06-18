@@ -27,6 +27,7 @@ public class CreeperAlert {
     public static int INTERVAL_CORRECTION = 0;
 
 
+    @SuppressWarnings("removal")
     public CreeperAlert() {
 
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
